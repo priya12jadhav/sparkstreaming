@@ -1,0 +1,17 @@
+Create a new folder logged in as Hadoop user
+Create file 'NetworkWordCount.scala' in that folder
+Create a 'networkwordcount.sbt' file in the same folder
+Create the sbt package
+$ sbt package
+
+5. Start the spark server
+$ start-master.sh
+$ start-worker.sh spark://Ubuntu.myguest.virtualbox.org:7077/
+
+6. On a separate terminal, start the netscape server
+$ nc –lk 9999
+
+7. On the original terminal, submit the scala program to spark
+$ spark-submit –class ‘NetworkWordCount –master 'spark://Ubuntu.myguest.virtualbox.org:7077/' \target/scala-2.12/networkwordcount_2.12-1.0.0.jar
+
+On the netcat terminal provide textual input for the scala program to count words of the live stream every 10 seconds
